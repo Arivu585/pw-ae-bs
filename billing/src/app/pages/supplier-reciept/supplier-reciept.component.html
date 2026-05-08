@@ -1,0 +1,47 @@
+<div class="container-fluid mb-5">
+    <div class="row">
+        <div class="col-md-3">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col-md-9 mt-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                          <li class="breadcrumb-item"><a routerLink="/home" class="text-decoration-none">Home</a></li>
+                          <li class="breadcrumb-item active" aria-current="page">Supplier Reciept</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Date</th>
+                                    <th>Bill No</th>
+                                    <th>Supplier Name</th>
+                                    <th>Contact</th>
+                                    <th>Pending</th>
+                                </tr>
+                            </thead> 
+                            <tbody>
+                                <tr *ngFor="let row of bills;index as i">
+                                    <td class="text-center">{{i+1}}</td>
+                                    <td class="text-center">{{row.phdate}}</td>
+                                    <td>{{row.phno}}</td>
+                                    <td>{{row.cname}}</td>
+                                    <td>{{row.contact}}</td>
+                                    <th class="text-end text-danger">{{row.phpend}}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

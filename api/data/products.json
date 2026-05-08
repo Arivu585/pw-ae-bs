@@ -1,0 +1,72 @@
+[
+    {
+        "id": "1",
+        "name": "Apples",
+        "price": 500
+    },
+    {
+        "id": "2",
+        "name": "Oranges",
+        "price": 950
+    },
+    {
+        "id": 3,
+        "name": "Mango",
+        "price": 550
+    },
+    {
+        "id": 4,
+        "name": "Papaya",
+        "price": 200
+    },
+    {
+        "id": "a6612861-6d62-4ab4-9c5d-f11e43b80800",
+        "name": "Mangoo",
+        "price": 100
+    },
+    {
+        "id": "a5e6c62c-afa2-4623-8815-14f6b32362af",
+        "name": "Brinjal",
+        "price": 89
+    },
+    {
+        "id": "12dad3a9-a74a-40d3-90ee-6d7ab857e694",
+        "name": "Tomato",
+        "price": 78
+    },
+    {
+        "id": "33d54f3a-6631-4ec0-b4e1-716cc20c5cbe",
+        "name": "Potato",
+        "price": 89
+    },
+    {
+        "id": "5659772d-1507-407f-8420-f38423997b23",
+        "name": "Onions",
+        "price": 89
+    },
+    {
+        "id": "1e5c9ba1-4f76-4465-aea3-32e4443a1f63",
+        "name": "Bitter Gourd",
+        "price": 6890
+    },
+    {
+        "id": "b3c15fec-0fea-40a6-98cf-ab051f5b6914",
+        "name": "Bottle Gourd",
+        "price": 5467
+    },
+    {
+        "id": "3c281aab-650c-4fed-b6cd-d14b3eaa93b8",
+        "name": "Banana",
+        "price": 89
+    },
+    {
+        "id": "75fdef8d-3011-460a-9150-530e7aace1a5",
+        "name": "Cabbage",
+        "price": 989
+    },
+    {
+        "id": "9aa85342-8a45-4997-bff1-106fca241663",
+        "name": "Sponge Gourd",
+        "price": 89
+    }
+]

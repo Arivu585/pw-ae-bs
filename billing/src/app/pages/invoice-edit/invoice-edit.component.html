@@ -1,0 +1,235 @@
+<div class="container-fluid mb-5">
+    <div class="row">
+        <div class="col-md-3">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col-md-9 mt-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a routerLink="/home" class="text-decoration-none">Home</a></li>
+                            <li class="breadcrumb-item"><a routerLink="/invoice_view" class="text-decoration-none">Invoice View</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Invoice Edit - {{invoice?.at(0).ino}}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div *ngIf="status==true" class="alert alert-primary alert-dismissible fade show" role="alert">
+                <strong>Invoice Edited</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="close()"></button>
+              </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="" [formGroup]="invoiceForm" (ngSubmit)="saveData()">
+                                <div class="row form-group">
+                                    <div class="col-md-6 mt-3">
+                                        <label>Invoice No</label>
+                                        <input type="number" title="Invoice No" class="form-control" formControlName="ino" readonly>
+                                        <div *ngIf="invoiceForm.get('ino')?.invalid && invoiceForm.get('ino')?.touched"
+                                            class="text-danger">
+                                            <span *ngIf="invoiceForm.get('ino')?.errors?.['required']"> Please Refresh Page To get Invoice Number</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mt-3">
+                                        <label>Invoice Date</label>
+                                        <input type="text" title="yyyy/MM/dd" class="form-control"
+                                            formControlName="idate">
+                                        <div *ngIf="invoiceForm.get('idate')?.invalid && invoiceForm.get('idate')?.touched"
+                                            class="text-danger">
+                                            <span *ngIf="invoiceForm.get('idate')?.errors?.['required']"> Please Pick a
+                                                Date </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mt-3">
+                                        <div class="text-info">Bill To:</div>
+                                        <hr>
+                                        <div class="row form-group">
+                                            <div class="col-md-12 mt-3">
+                                                <div class="row">
+                                                    <div class="col-md-4"><label>Customer</label></div>
+                                                    <div class="col-md-8">
+                                                        <select title="Customer" class="form-control"
+                                                            formControlName="bcustomer" (change)="billcustomer($event)">
+                                                            <option value="" disabled selected>Select Customer</option>
+                                                            <option *ngFor="let row of customer" value="{{row?.cid}}">
+                                                                {{row?.cname}}</option>
+                                                        </select>
+                                                        <div *ngIf="invoiceForm.get('bcustomer')?.invalid && invoiceForm.get('bcustomer')?.touched"
+                                                            class="text-danger">
+                                                            <span *ngIf="invoiceForm.get('bcustomer')?.errors?.['required']">
+                                                                Please Select Bill Customer </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row mt-3">
+                                                    <div class="col-md-4"><label>Address</label></div>
+                                                    <div class="col-md-8"><input title="Address" type="text" class="form-control"
+                                                            formControlName="baddress" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-md-4"><label>City</label></div>
+                                                    <div class="col-md-8"><input title="city" type="text" class="form-control"
+                                                            formControlName="bcity" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-md-4"><label>Contact</label></div>
+                                                    <div class="col-md-8"><input title="Contact" type="text" class="form-control"
+                                                            formControlName="bcontact" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mt-3">
+                                        <div class="text-info">Ship To:</div>
+                                        <hr>
+                                        <div class="row form-group">
+                                            <div class="col-md-12 mt-3">
+                                                <div class="row">
+                                                    <div class="col-md-4"><label>Customer</label></div>
+                                                    <div class="col-md-8">
+                                                        <select title="Customer" class="form-control"
+                                                            formControlName="scustomer" (change)="shipcustomer($event)">
+                                                            <option value="" disabled selected>Select Customer</option>
+                                                            <option *ngFor="let row of customer" value="{{row.cid}}">
+                                                                {{row.cname}}</option>
+                                                        </select>
+                                                        <div *ngIf="invoiceForm.get('scustomer')?.invalid && invoiceForm.get('scustomer')?.touched"
+                                                            class="text-danger">
+                                                            <span *ngIf="invoiceForm.get('scustomer')?.errors?.['required']">
+                                                                Please Select Ship Customer </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row mt-3">
+                                                    <div class="col-md-4"><label>Address</label></div>
+                                                    <div class="col-md-8"><input title="Address" type="text" class="form-control"
+                                                            formControlName="saddress" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-md-4"><label>City</label></div>
+                                                    <div class="col-md-8"><input title="city" type="text" class="form-control"
+                                                            formControlName="scity" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-md-4"><label>Contact</label></div>
+                                                    <div class="col-md-8"><input title="Contact" type="text" class="form-control"
+                                                            formControlName="scontact" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table table-bordered mt-3">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Rate</th>
+                                            <th>Quantity</th>
+                                            <th>Amount</th>
+                                            <th>Remove</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody formArrayName="products"
+                                        *ngFor="let row of products.controls;let i = index;">
+                                        <tr formGroupName="{{i}}">
+                                            <td>
+                                                <select title="Product" class="form-control" formControlName="pid"
+                                                    (change)="selectProduct($event,i)">
+                                                    <option value="" disabled>Select Product</option>
+                                                    <option *ngFor="let row of product" value="{{row.pid}}">
+                                                        {{row.pname}}</option>
+                                                </select>
+                                                <div *ngIf="products.at(i).get('pid')?.invalid && products.at(i).get('pid')?.touched"
+                                                    class="text-danger">
+                                                    <span *ngIf="products.at(i).get('pid')?.errors?.['required']">
+                                                        Please Select Product </span>
+                                                </div>
+                                            </td>
+                                            <td><input title="Rate" type="number" min="1" class="form-control" readonly
+                                                    formControlName="rate"></td>
+                                            <td><input title="Quantity" type="number" min="1" class="form-control" formControlName="qty"
+                                                    (change)="changeQty($event,i)" (keyup)="changeQty($event,i)"
+                                                    (keyup)="numOnly($event)">
+                                                <div *ngIf="products.at(i).get('qty')?.invalid && products.at(i).get('qty')?.touched"
+                                                    class="text-danger">
+                                                    <span *ngIf="products.at(i).get('qty')?.errors?.['required']">
+                                                        Please Enter Qty </span>
+                                                </div>
+                                            </td>
+                                            <td><input title="Remove" type="number" min="1" class="form-control"
+                                                    formControlName="rtotal" readonly></td>
+                                            <td class="text-center"><a class="btn btn-danger" (click)="removeRow(i)"><i
+                                                        class="fa fa-trash"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="2"><a class="btn btn-success" (click)="addRow()"><i
+                                                        class="fa fa-plus"></i> Add Row</a></td>
+                                            <td>Total</td>
+                                            <td><input title="Total" type="number" min="1" class=" form-control"
+                                                    formControlName="itotal" readonly></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"></td>
+                                            <td>Paid</td>
+                                            <td>
+                                                <input title="Paid" type="number" min="0" class="form-control" formControlName="ipaid" (keyup)="paid($event)" (change)="paid($event)">
+                                                <div *ngIf="invoiceForm.get('ipaid')?.invalid && invoiceForm.get('ipaid')?.touched" class="text-danger">
+                                                    <span *ngIf="invoiceForm.get('ipaid')?.errors?.['required']"> Please Enter Paid Amount </span>
+                                                    <span *ngIf="invoiceForm.get('ipaid')?.errors?.['max']"> Amount is Greater than total </span>
+                                                </div>
+                                                </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"></td>
+                                            <td>Pending</td>
+                                            <td><input title="Pending" type="number" min="0" class="form-control" formControlName="ipend" readonly></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"></td>
+                                            <td>Pay Mode</td>
+                                            <td>
+                                                <select title="Pay Mode" class=" form-control" formControlName="ipay">
+                                                    <option value="" disabled selected>Select Pay Mode</option>
+                                                    <option *ngIf="option==true">Cash</option>
+                                                    <option *ngIf="option==true">UPI</option>
+                                                    <option *ngIf="option==false">Credit</option>
+                                                </select>
+                                                <div *ngIf="invoiceForm.get('ipay')?.invalid && invoiceForm.get('ipay')?.touched" class="text-danger">
+                                                    <span *ngIf="invoiceForm.get('ipay')?.errors?.['required']"> Please Select Pay Mode </span>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <div class="row mt-3">
+                                    <div class="col d-flex justify-content-end">
+                                        <input type="submit" class="btn btn-primary" value="Update Invoice">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

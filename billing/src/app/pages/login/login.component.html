@@ -1,0 +1,39 @@
+<div class="container mt-3 mb-5">
+    <div class="row">
+        <div class="ms-auto col-md-4 mt-2">
+            <form action="" [formGroup]="logForm" (ngSubmit)="saveData()">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="text-center">LOGIN</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row form-gorup">
+                            <div class="col-md-12 mt-2">
+                                <label>User Name</label>
+                                <input placeholder="Enter Name" class='form-control' type="text" formControlName="name" />
+                                <div *ngIf="logForm.get('name')?.invalid && logForm.get('name')?.touched" class="text-danger">
+                                <span *ngIf="logForm.get('name')?.errors?.['required']"> Please Enter Name</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-gorup">
+                            <div class="col-md-12 mt-2">
+                                <label>Password</label>
+                                <input placeholder="Enter Password" class='form-control' type="password" formControlName="pass" />
+                                <div *ngIf="logForm.get('pass')?.invalid && logForm.get('pass')?.touched" class="text-danger">
+                                    <span *ngIf="logForm.get('pass')?.errors?.['required']"> Please Enter Password</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-2">
+                                <input type="submit" class="btn btn-primary btn-sm" value="LOGIN">
+                            </div>
+                        </div>
+                        <div *ngIf="wrong == true" class="text-danger">Incorrect Name & Password!</div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

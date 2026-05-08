@@ -1,0 +1,53 @@
+<div class="container-fluid mb-5">
+    <div class="row">
+        <div class="col-md-3">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col-md-9 mt-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                          <li class="breadcrumb-item"><a routerLink="/home" class="text-decoration-none">Home</a></li>
+                          <li class="breadcrumb-item active" aria-current="page">Product View</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div class="row" *ngIf="delete==true">
+                <div class="col-md-12">
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        <strong>Product Deleted</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="close()" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Name</th>
+                                    <th>Rate</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let row of product;index as i">
+                                    <td class="text-center">{{i+1}}</td>
+                                    <td>{{row.pname}}</td>
+                                    <td class="text-end">{{row.rate}}</td>
+                                    <td class="text-center"><a [routerLink]="['/product_edit',row.pid]" class="btn btn-success"><i class="fa fa-pencil"></i></a></td>
+                                    <td class="text-center"><a class="btn btn-danger" (click)="remove(row.pid,i)"><i class="fa fa-trash"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="row">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button *ngIf="user!='login'" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div *ngIf="user!='login'" class="collapse navbar-collapse" id="sidebar">
+            <ul class="list-unstyled">
+                <li class="nav-link"><a class="text-decoration-none" routerLink="/home" aria-current="page" ><i class="fa fa-home"></i> Home</a></li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-sticky-note"></i> Invoice</a>
+                  <ul class="dropdown-menu dropdown-menu-dark" >
+                    <li><a class="dropdown-item" routerLink="/invoice_entry">Entry</a></li>
+                    <li><a class="dropdown-item" routerLink="/invoice_view">View</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-sticky-note"></i> Purchase</a>
+                  <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><a class="dropdown-item" routerLink="/purchase_entry">Entry</a></li>
+                    <li><a class="dropdown-item" routerLink="/purchase_view">View</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-tag"></i> Product</a>
+                  <ul class="dropdown-menu dropdown-menu-dark" >
+                    <li><a class="dropdown-item" routerLink="/product_entry">Entry</a></li>
+                    <li><a class="dropdown-item" routerLink="/product_view">View</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-line-chart"></i> Stock</a>
+                  <ul class="dropdown-menu dropdown-menu-dark" >
+                    <li><a class="dropdown-item" routerLink="/stock_entry">Entry</a></li>
+                    <li><a class="dropdown-item" routerLink="/stock_view">View</a></li>
+                  </ul>
+                </li>
+                <li class="nav-link"><a class="text-decoration-none" routerLink="/stock_report" aria-current="page" ><i class="fa fa-sticky-note"></i> Stock Report</a></li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-user"></i> Customer</a>
+                  <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><a class="dropdown-item" routerLink="/customer_entry">Entry</a></li>
+                    <li><a class="dropdown-item" routerLink="/customer_view">View</a></li>
+                  </ul>
+                </li>
+                <li class="nav-link"><a class="text-decoration-none" routerLink="/customer_reciept" aria-current="page" ><i class="fa fa-bookmark"></i> Customer Reciept</a></li>
+                <li class="nav-link"><a class="text-decoration-none" routerLink="/supplier_reciept" aria-current="page" ><i class="fa fa-bookmark"></i> Supplier Reciept</a></li>
+                <li class="nav-link"><a class="text-decoration-none" routerLink="/change_password" aria-current="page" ><i class="fa fa-key"></i> Change Password</a></li>
+                <li class="nav-link"><a class="text-decoration-none text-danger" (click)="logout()" routerLink="" aria-current="page" ><i class="fa fa-sign-out"></i> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>

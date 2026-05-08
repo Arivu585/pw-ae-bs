@@ -1,0 +1,193 @@
+<div class="container-fluid mb-5">
+    <div class="row">
+        <div class="col-md-3">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col-md-9 mt-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a routerLink="/home" class="text-decoration-none">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Purchase Entry</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div *ngIf="status==true" class="alert alert-primary alert-dismissible fade show" role="alert">
+                <strong>Purchase Saved</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="close()"></button>
+              </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="" [formGroup]="purchaseForm" (ngSubmit)="saveData()">
+                                <div class="row form-group">
+                                    <div class="col-md-6 mt-3">
+                                        <label>Bill Number</label>
+                                        <input type="text" class="form-control" formControlName="phno">
+                                        <div *ngIf="purchaseForm.get('phno')?.invalid && purchaseForm.get('phno')?.touched"
+                                            class="text-danger">
+                                            <span *ngIf="purchaseForm.get('phno')?.errors?.['required']"> Please Enter Bill Number</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mt-3">
+                                        <label>Purchase Date</label>
+                                        <input type="text" title="yyyy/MM/dd" class="form-control"
+                                            formControlName="phdate">
+                                        <div *ngIf="purchaseForm.get('phdate')?.invalid && purchaseForm.get('phdate')?.touched"
+                                            class="text-danger">
+                                            <span *ngIf="purchaseForm.get('phdate')?.errors?.['required']"> Please Pick a
+                                                Date </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mt-3">
+                                        <div class="text-info">Bill From:</div>
+                                        <hr>
+                                        <div class="row form-group">
+                                            <div class="col-md-12 mt-3">
+                                                <div class="row">
+                                                    <div class="col-md-4"><label>Supplier</label></div>
+                                                    <div class="col-md-8">
+                                                        <select title="Select Supplier" class="form-control"
+                                                            formControlName="bsupplier" (change)="billSupplier($event)">
+                                                            <option value="" disabled selected>Select Supplier</option>
+                                                            <option *ngFor="let row of customer" value="{{row?.cid}}">
+                                                                {{row?.cname}}</option>
+                                                        </select>
+                                                        <div *ngIf="purchaseForm.get('bsupplier')?.invalid && purchaseForm.get('bsupplier')?.touched"
+                                                            class="text-danger">
+                                                            <span *ngIf="purchaseForm.get('bsupplier')?.errors?.['required']">
+                                                                Please Select Bill Supplier </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row mt-3">
+                                                    <div class="col-md-4"><label>Address</label></div>
+                                                    <div class="col-md-8"><input type="text" class="form-control"
+                                                            formControlName="baddress" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-md-4"><label>City</label></div>
+                                                    <div class="col-md-8"><input type="text" class="form-control"
+                                                            formControlName="bcity" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-md-4"><label>Contact</label></div>
+                                                    <div class="col-md-8"><input type="text" class="form-control"
+                                                            formControlName="bcontact" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table table-bordered mt-3">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Purchase Rate</th>
+                                            <th>Quantity</th>
+                                            <th>Amount</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody formArrayName="products"
+                                        *ngFor="let row of products.controls;let i = index;">
+                                        <tr formGroupName="{{i}}">
+                                            <td>
+                                                <select title="Product" class="form-control" formControlName="pid" (change)="selectProduct(i)">
+                                                    <option value="" disabled selected>Select Product</option>
+                                                    <option *ngFor="let row of product" value="{{row.pid}}">{{row.pname}}</option>
+                                                </select>
+                                                <div *ngIf="products.at(i).get('pid')?.invalid && products.at(i).get('pid')?.touched"
+                                                    class="text-danger">
+                                                    <span *ngIf="products.at(i).get('pid')?.errors?.['required']">
+                                                        Please Select Product </span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <input type="number" min="0" class="form-control" formControlName="phrate" (change)="changePrice($event,i)" (keyup)="changePrice($event,i)" (keypress)="numOnly($event)">
+                                                <div *ngIf="products.at(i).get('phrate')?.invalid && products.at(i).get('phrate')?.touched"
+                                                    class="text-danger">
+                                                    <span *ngIf="products.at(i).get('phrate')?.errors?.['required']"> Please Enter Purchase Rate </span>
+                                                </div>
+                                            </td>
+                                            <td><input type="text" min="1" class="form-control" formControlName="qty"
+                                                    (change)="changeQty($event,i)" (keyup)="changeQty($event,i)"
+                                                    (keypress)="numOnly($event)">
+                                                <div *ngIf="products.at(i).get('qty')?.invalid && products.at(i).get('qty')?.touched"
+                                                    class="text-danger">
+                                                    <span *ngIf="products.at(i).get('qty')?.errors?.['required']"> Please Enter Qty </span>
+                                                </div>
+                                            </td>
+                                            <td><input type="number" min="1" class="form-control"
+                                                    formControlName="rtotal" readonly></td>
+                                            <td class="text-center"><a class="btn btn-danger" (click)="removeRow(i)"><i
+                                                        class="fa fa-trash"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="2"><a class="btn btn-success" (click)="addRow()"><i
+                                                        class="fa fa-plus"></i> Add Row</a></td>
+                                            <td>Total</td>
+                                            <td><input type="number" min="1" class=" form-control"
+                                                    formControlName="phtotal" readonly></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"></td>
+                                            <td>Paid</td>
+                                            <td>
+                                                <input type="number" min="0" class="form-control" formControlName="phpaid" (keyup)="paid($event)" (change)="paid($event)" (keypress)="numOnly($event)">
+                                                <div *ngIf="purchaseForm.get('phpaid')?.invalid && purchaseForm.get('phpaid')?.touched" class="text-danger">
+                                                    <span *ngIf="purchaseForm.get('phpaid')?.errors?.['required']"> Please Enter Paid Amount </span>
+                                                    <span *ngIf="purchaseForm.get('phpaid')?.errors?.['max']"> Amount is Greater than total </span>
+                                                </div>
+                                                </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"></td>
+                                            <td>Pending</td>
+                                            <td><input type="number" min="0" class="form-control" formControlName="phpend" readonly></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"></td>
+                                            <td>Pay Mode</td>
+                                            <td>
+                                                <select title="Pay Mode" class=" form-control" formControlName="phpay">
+                                                    <option value="" disabled selected>Select Pay Mode</option>
+                                                    <option *ngIf="option==true">Cash</option>
+                                                    <option *ngIf="option==true">UPI</option>
+                                                    <option *ngIf="option==false">Credit</option>
+                                                </select>
+                                                <div *ngIf="purchaseForm.get('phpay')?.invalid && purchaseForm.get('phpay')?.touched" class="text-danger">
+                                                    <span *ngIf="purchaseForm.get('phpay')?.errors?.['required']"> Please Select Pay Mode </span>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <div class="row mt-3">
+                                    <div class="col d-flex justify-content-end">
+                                        <input type="submit" class="btn btn-primary" value="Save Purchase">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
