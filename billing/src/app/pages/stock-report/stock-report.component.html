@@ -1,45 +1,47 @@
 <div class="container-fluid mb-5">
-    <div class="row">
-        <div class="col-md-3">
-            <app-sidebar></app-sidebar>
-        </div>
-        <div class="col-md-9 mt-5">
-            <div class="row">
-                <div class="col-md-12">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                          <li class="breadcrumb-item"><a routerLink="/home" class="text-decoration-none">Home</a></li>
-                          <li class="breadcrumb-item active" aria-current="page">Stock Report</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead class="text-center">
-                                <tr>
-                                    <th>S.No</th>
-                                    <th>Product Name</th>
-                                    <th>Total Quantity</th>
-                                    <th>Sold Quantity</th>
-                                    <th>Current Quantity</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let row of stock;index as i">
-                                    <td class="text-center">{{i+1}}</td>
-                                    <td>{{row.pname}}</td>
-                                    <td class="text-center">{{row.tqty}}</td>
-                                    <td class="text-center">{{row.sqty}}</td>
-                                    <td class="text-center">{{row.cqty}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-md-3">
+      <app-sidebar></app-sidebar>
     </div>
+    <div class="col-md-9 mt-5">
+      <div class="row">
+        <div class="col-md-12">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/home" class="text-decoration-none">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Stock Report</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead class="text-center">
+                <tr>
+                  <th>S.No</th>
+                  <th>Product Name</th>
+                  <th>Total Quantity</th>
+                  <th>Sold Quantity</th>
+                  <th>Current Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (row of stock; track row; let i = $index) {
+                  <tr>
+                    <td class="text-center">{{i+1}}</td>
+                    <td>{{row.pname}}</td>
+                    <td class="text-center">{{row.tqty}}</td>
+                    <td class="text-center">{{row.sqty}}</td>
+                    <td class="text-center">{{row.cqty}}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

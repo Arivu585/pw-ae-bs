@@ -1,101 +1,103 @@
 <div class="container-fluid mt-1">
-    <div class="row">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
         <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-12">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                          <li class="breadcrumb-item"><a routerLink="/home" class="text-decoration-none">Home</a></li>
-                          <li class="breadcrumb-item"><a routerLink="/purchase_view" class="text-decoration-none">Purchase View</a></li>
-                          <li class="breadcrumb-item active" aria-current="page">Purchase Print - {{purchase?.at(0).phno}}</li>
-                          <li class="ms-auto"><a class="btn btn-success btn-sm" (click)="print()"><i class="fa fa-print"></i> Print Purchase</a></li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="table-responsive">
-                        <table class="table table-bordered fs-15">
-                            <thead>
-                                <tr class="text-center">
-                                    <td colspan="6">
-                                        <div class="h">BILLING SOFTWARE</div>
-                                        <div>Suite 24, M Centre
-                                            11 Palmerston Lane
-                                            Manuka, ACT 2603
-                                            Australia.
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="text-center">
-                                    <td colspan="6">Purchase Invoice</td>
-                                </tr>
-                                <tr>
-                                    <th colspan="1">Bill Number</th>
-                                    <td colspan="2">{{purchase?.at(0).phno}}</td>
-                                    <th colspan="1">Bill Date</th>
-                                    <td colspan="2">{{date}}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="6">
-                                        <div class="p-1 h">Bill From :</div>
-                                        <div class="ms-3">{{supplier?.cname}}, {{supplier?.city}}, {{supplier?.address}}.</div>
-                                    </td>
-                                </tr>
-                                <tr class="text-center">
-                                    <th>S.No</th>
-                                    <th>Product</th>
-                                    <th>HSN</th>
-                                    <th>Rate</th>
-                                    <th>Quantity</th>
-                                    <th>Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                               <tr *ngFor="let row of purchase;index as i;">
-                                    <td class="text-center">{{i+1}}</td>
-                                    <td>{{row.pname}}</td>
-                                    <td>{{row.code}}</td>
-                                    <td class="text-end">{{row.phrate}}</td>
-                                    <td>{{row.qty}}</td>
-                                    <td class="text-end">{{row.rtotal}}</td>
-                               </tr>
-                               <tr>
-                                    <td colspan="4">
-                                        <div class="h">Amount in Words</div>
-                                        <div class="text-capitalize ms-5">{{total}} Rupees Only</div>
-                                    </td>
-                                    <th>Total</th>
-                                    <td class="text-end">{{purchase?.at(0).phtotal}}</td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="6">
-                                        <div class="h">Declaration</div>
-                                        <div class="ms-2">We declare that invoice shows the actual price of the goods described and that all particulars are true and correct.</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4" class="border border-end-0">
-                                        <div class="h">Bank Details:</div>
-                                        <div><b>BILLING SOFTWARE</b></div>
-                                        <div><b>Bank Name:</b> HDFC</div>
-                                        <div><b>Acc No.:</b> 6575474335679567</div>
-                                        <div><b>IFSC:</b> HDFC00678</div>
-                                        <div><b>Branch:</b> Attur</div>
-                                    </td>
-                                    <td colspan="2" class="border border-start-0">
-                                        <div class="mb-5 text-center h">For BILLING SOFTWARE</div>
-                                        <div class="mt-5 text-center h">Authorized Signature</div>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
-            </div>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/home" class="text-decoration-none">Home</a></li>
+              <li class="breadcrumb-item"><a routerLink="/purchase_view" class="text-decoration-none">Purchase View</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Purchase Print - {{purchase?.at(0).phno}}</li>
+              <li class="ms-auto"><a class="btn btn-success btn-sm" (click)="print()"><i class="fa fa-print"></i> Print Purchase</a></li>
+            </ol>
+          </nav>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-bordered fs-15">
+              <thead>
+                <tr class="text-center">
+                  <td colspan="6">
+                    <div class="h">BILLING SOFTWARE</div>
+                    <div>Suite 24, M Centre
+                      11 Palmerston Lane
+                      Manuka, ACT 2603
+                      Australia.
+                    </div>
+                  </td>
+                </tr>
+                <tr class="text-center">
+                  <td colspan="6">Purchase Invoice</td>
+                </tr>
+                <tr>
+                  <th colspan="1">Bill Number</th>
+                  <td colspan="2">{{purchase?.at(0).phno}}</td>
+                  <th colspan="1">Bill Date</th>
+                  <td colspan="2">{{date}}</td>
+                </tr>
+                <tr>
+                  <td colspan="6">
+                    <div class="p-1 h">Bill From :</div>
+                    <div class="ms-3">{{supplier?.cname}}, {{supplier?.city}}, {{supplier?.address}}.</div>
+                  </td>
+                </tr>
+                <tr class="text-center">
+                  <th>S.No</th>
+                  <th>Product</th>
+                  <th>HSN</th>
+                  <th>Rate</th>
+                  <th>Quantity</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (row of purchase; track row; let i = $index) {
+                  <tr>
+                    <td class="text-center">{{i+1}}</td>
+                    <td>{{row.pname}}</td>
+                    <td>{{row.code}}</td>
+                    <td class="text-end">{{row.phrate}}</td>
+                    <td>{{row.qty}}</td>
+                    <td class="text-end">{{row.rtotal}}</td>
+                  </tr>
+                }
+                <tr>
+                  <td colspan="4">
+                    <div class="h">Amount in Words</div>
+                    <div class="text-capitalize ms-5">{{total}} Rupees Only</div>
+                  </td>
+                  <th>Total</th>
+                  <td class="text-end">{{purchase?.at(0).phtotal}}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="6">
+                    <div class="h">Declaration</div>
+                    <div class="ms-2">We declare that invoice shows the actual price of the goods described and that all particulars are true and correct.</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="4" class="border border-end-0">
+                    <div class="h">Bank Details:</div>
+                    <div><b>BILLING SOFTWARE</b></div>
+                    <div><b>Bank Name:</b> HDFC</div>
+                    <div><b>Acc No.:</b> 6575474335679567</div>
+                    <div><b>IFSC:</b> HDFC00678</div>
+                    <div><b>Branch:</b> Attur</div>
+                  </td>
+                  <td colspan="2" class="border border-start-0">
+                    <div class="mb-5 text-center h">For BILLING SOFTWARE</div>
+                    <div class="mt-5 text-center h">Authorized Signature</div>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

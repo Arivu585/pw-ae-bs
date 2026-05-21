@@ -1,69 +1,89 @@
 <div class="container-fluid mb-5">
-    <div class="row">
-        <div class="col-md-3">
-            <app-sidebar></app-sidebar>
-        </div>
-        <div class="col-md-9 mt-5">
-            <div class="row">
-                <div class="col-md-12">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                          <li class="breadcrumb-item"><a routerLink="/home" class="text-decoration-none">Home</a></li>
-                          <li class="breadcrumb-item active" aria-current="page">Stock Entry</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-            <div class="row" *ngIf="status==true">
-                <div class="col-md-12">
-                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                        <strong>Stock Added</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="close()" aria-label="Close"></button>
-                      </div>
-                </div>
-            </div>
-            <form action="" [formGroup]="stockForm" (ngSubmit)="saveData()">
-                <div class="row form-group">
-                    <div class="col-md-6 mt-3">
-                        <label>Date</label>
-                        <input type="date" class="form-control" formControlName="date">
-                        <div *ngIf="stockForm.get('date')?.invalid && stockForm.get('date')?.touched" class="text-danger">
-                            <span *ngIf="stockForm.get('date')?.errors?.['required']"> Please Pick Date </span>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mt-3">
-                        <label>Product</label>
-                        <select title="Product" formControlName="pid" class="form-control">
-                            <option value="" disabled>Select Product</option>
-                            <option *ngFor="let row of product" value="{{row.pid}}">{{row.pname}}</option>
-                        </select>
-                        <div *ngIf="stockForm.get('pid')?.invalid && stockForm.get('pid')?.touched" class="text-danger">
-                            <span *ngIf="stockForm.get('pid')?.errors?.['required']"> Please Select a Product </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-6 mt-3">
-                        <label>Quantity</label>
-                        <input type="number" min="1" (keypress)="numOnly($event)" class="form-control" formControlName="qty">
-                        <div *ngIf="stockForm.get('qty')?.invalid && stockForm.get('qty')?.touched" class="text-danger">
-                            <span *ngIf="stockForm.get('qty')?.errors?.['required']"> Please Enter Quantity </span>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mt-3">
-                        <label>Purchase Rate</label>
-                        <input type="number" min="1" (keypress)="numOnly($event)" class="form-control" formControlName="phrate">
-                        <div *ngIf="stockForm.get('phrate')?.invalid && stockForm.get('phrate')?.touched" class="text-danger">
-                            <span *ngIf="stockForm.get('phrate')?.errors?.['required']"> Please Enter Purchase Rate </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col">
-                        <input type="submit" class="btn btn-success" value="Add Stock">
-                    </div>
-                </div>
-            </form>
-        </div>
+  <div class="row">
+    <div class="col-md-3">
+      <app-sidebar></app-sidebar>
     </div>
+    <div class="col-md-9 mt-5">
+      <div class="row">
+        <div class="col-md-12">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/home" class="text-decoration-none">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Stock Entry</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      @if (status==true) {
+        <div class="row">
+          <div class="col-md-12">
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+              <strong>Stock Added</strong>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="close()" aria-label="Close"></button>
+            </div>
+          </div>
+        </div>
+      }
+      <form action="" [formGroup]="stockForm" (ngSubmit)="saveData()">
+        <div class="row form-group">
+          <div class="col-md-6 mt-3">
+            <label>Date</label>
+            <input type="date" class="form-control" formControlName="date">
+            @if (stockForm.get('date')?.invalid && stockForm.get('date')?.touched) {
+              <div class="text-danger">
+                @if (stockForm.get('date')?.errors?.['required']) {
+                  <span> Please Pick Date </span>
+                }
+              </div>
+            }
+          </div>
+          <div class="col-md-6 mt-3">
+            <label>Product</label>
+            <select title="Product" formControlName="pid" class="form-control">
+              <option value="" disabled>Select Product</option>
+              @for (row of product; track row) {
+                <option value="{{row.pid}}">{{row.pname}}</option>
+              }
+            </select>
+            @if (stockForm.get('pid')?.invalid && stockForm.get('pid')?.touched) {
+              <div class="text-danger">
+                @if (stockForm.get('pid')?.errors?.['required']) {
+                  <span> Please Select a Product </span>
+                }
+              </div>
+            }
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-md-6 mt-3">
+            <label>Quantity</label>
+            <input type="number" min="1" (keypress)="numOnly($event)" class="form-control" formControlName="qty">
+            @if (stockForm.get('qty')?.invalid && stockForm.get('qty')?.touched) {
+              <div class="text-danger">
+                @if (stockForm.get('qty')?.errors?.['required']) {
+                  <span> Please Enter Quantity </span>
+                }
+              </div>
+            }
+          </div>
+          <div class="col-md-6 mt-3">
+            <label>Purchase Rate</label>
+            <input type="number" min="1" (keypress)="numOnly($event)" class="form-control" formControlName="phrate">
+            @if (stockForm.get('phrate')?.invalid && stockForm.get('phrate')?.touched) {
+              <div class="text-danger">
+                @if (stockForm.get('phrate')?.errors?.['required']) {
+                  <span> Please Enter Purchase Rate </span>
+                }
+              </div>
+            }
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col">
+            <input type="submit" class="btn btn-success" value="Add Stock">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

@@ -1,55 +1,59 @@
 <div class="container-fluid mb-5">
-    <div class="row">
-        <div class="col-md-3">
-            <app-sidebar></app-sidebar>
-        </div>
-        <div class="col-md-9 mt-5">
-            <div class="row">
-                <div class="col-md-12">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                          <li class="breadcrumb-item"><a routerLink="/home" class="text-decoration-none">Home</a></li>
-                          <li class="breadcrumb-item active" aria-current="page">Customer View</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-            <div class="row" *ngIf="delete==true">
-                <div class="col-md-12">
-                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                        <strong>Customer Deleted</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="close()" aria-label="Close"></button>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-dark">
-                            <thead class="text-center">
-                                <tr>
-                                    <th>S.No</th>
-                                    <th>Name</th>
-                                    <th>Address</th>
-                                    <th>Type</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let row of customer;index as i">
-                                    <td class="text-center">{{i+1}}</td>
-                                    <td>{{row.cname}}</td>
-                                    <td>{{row.address}}</td>
-                                    <td>{{row.type}}</td>
-                                    <td class="text-center"><a [routerLink]="['/customer_edit',row.cid]" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a></td>
-                                    <td class="text-center"><a class="btn btn-danger btn-sm" (click)="remove(row.cid,i)"><i class="fa fa-trash"></i></a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-md-3">
+      <app-sidebar></app-sidebar>
     </div>
+    <div class="col-md-9 mt-5">
+      <div class="row">
+        <div class="col-md-12">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/home" class="text-decoration-none">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Customer View</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      @if (delete==true) {
+        <div class="row">
+          <div class="col-md-12">
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+              <strong>Customer Deleted</strong>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="close()" aria-label="Close"></button>
+            </div>
+          </div>
+        </div>
+      }
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-bordered table-dark">
+              <thead class="text-center">
+                <tr>
+                  <th>S.No</th>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>Type</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (row of customer; track row; let i = $index) {
+                  <tr>
+                    <td class="text-center">{{i+1}}</td>
+                    <td>{{row.cname}}</td>
+                    <td>{{row.address}}</td>
+                    <td>{{row.type}}</td>
+                    <td class="text-center"><a [routerLink]="['/customer_edit',row.cid]" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a></td>
+                    <td class="text-center"><a class="btn btn-danger btn-sm" (click)="remove(row.cid,i)"><i class="fa fa-trash"></i></a></td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

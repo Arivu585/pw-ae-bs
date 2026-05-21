@@ -1,61 +1,77 @@
 <div class="container-fluid mb-5">
-    <div class="row">
-        <div class="col-md-3">
-            <app-sidebar></app-sidebar>
-        </div>
-        <div class="col-md-9 mt-5">
-            <div class="row">
-                <div class="col-md-12">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                          <li class="breadcrumb-item"><a routerLink="/home" class="text-decoration-none">Home</a></li>
-                          <li class="breadcrumb-item"><a routerLink="/product_view" class="text-decoration-none">Product View</a></li>
-                          <li class="breadcrumb-item active" aria-current="page">Product Edit</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-            <div class="row" *ngIf="edit==true">
-                <div class="col-md-12">
-                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                        <strong>Product Edited</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="close()" aria-label="Close"></button>
-                      </div>
-                </div>
-            </div>
-            <form action="" [formGroup]="productForm" (ngSubmit)="saveData()">
-                <div class="row form-group">
-                    <div class="col-md-6 mt-3">
-                        <label>Name</label>
-                        <input type="text" class="form-control" formControlName="pname">
-                        <div *ngIf="productForm.get('pname')?.invalid && productForm.get('pname')?.touched" class="text-danger">
-                            <span *ngIf="productForm.get('pname')?.errors?.['required']"> Please Enter Name </span>
-                            <span *ngIf="productForm.get('pname')?.errors?.['minlength']"> Name Should be atleast 6 Characters </span>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mt-3">
-                        <label>Rate</label>
-                        <input type="number" min="1" class="form-control" (keypress)="numOnly($event)" formControlName="rate">
-                        <div *ngIf="productForm.get('rate')?.invalid && productForm.get('rate')?.touched" class="text-danger">
-                            <span *ngIf="productForm.get('rate')?.errors?.['required']"> Please Enter Rate in Numbers </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-6 mt-3">
-                        <label>Code</label>
-                        <input type="text" class="form-control" formControlName="code">
-                        <div *ngIf="productForm.get('code')?.invalid && productForm.get('code')?.touched" class="text-danger">
-                            <span *ngIf="productForm.get('code')?.errors?.['required']"> Please Enter Code </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col">
-                        <input type="submit" class="btn btn-success" value="Edit Product">
-                    </div>
-                </div>
-            </form>
-        </div>
+  <div class="row">
+    <div class="col-md-3">
+      <app-sidebar></app-sidebar>
     </div>
+    <div class="col-md-9 mt-5">
+      <div class="row">
+        <div class="col-md-12">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/home" class="text-decoration-none">Home</a></li>
+              <li class="breadcrumb-item"><a routerLink="/product_view" class="text-decoration-none">Product View</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Product Edit</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      @if (edit==true) {
+        <div class="row">
+          <div class="col-md-12">
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+              <strong>Product Edited</strong>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="close()" aria-label="Close"></button>
+            </div>
+          </div>
+        </div>
+      }
+      <form action="" [formGroup]="productForm" (ngSubmit)="saveData()">
+        <div class="row form-group">
+          <div class="col-md-6 mt-3">
+            <label>Name</label>
+            <input type="text" class="form-control" formControlName="pname">
+            @if (productForm.get('pname')?.invalid && productForm.get('pname')?.touched) {
+              <div class="text-danger">
+                @if (productForm.get('pname')?.errors?.['required']) {
+                  <span> Please Enter Name </span>
+                }
+                @if (productForm.get('pname')?.errors?.['minlength']) {
+                  <span> Name Should be atleast 6 Characters </span>
+                }
+              </div>
+            }
+          </div>
+          <div class="col-md-6 mt-3">
+            <label>Rate</label>
+            <input type="number" min="1" class="form-control" (keypress)="numOnly($event)" formControlName="rate">
+            @if (productForm.get('rate')?.invalid && productForm.get('rate')?.touched) {
+              <div class="text-danger">
+                @if (productForm.get('rate')?.errors?.['required']) {
+                  <span> Please Enter Rate in Numbers </span>
+                }
+              </div>
+            }
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-md-6 mt-3">
+            <label>Code</label>
+            <input type="text" class="form-control" formControlName="code">
+            @if (productForm.get('code')?.invalid && productForm.get('code')?.touched) {
+              <div class="text-danger">
+                @if (productForm.get('code')?.errors?.['required']) {
+                  <span> Please Enter Code </span>
+                }
+              </div>
+            }
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col">
+            <input type="submit" class="btn btn-success" value="Edit Product">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
