@@ -9,7 +9,7 @@ import { SidebarComponent } from './pages/include/sidebar/sidebar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { InvoiceEntryComponent } from './pages/invoice-entry/invoice-entry.component';
@@ -35,47 +35,40 @@ import { InvoicePrintComponent } from './pages/invoice-print/invoice-print.compo
 import { PurchasePrintComponent } from './pages/purchase-print/purchase-print.component';
 import { CustomerRecieptEntryComponent } from './pages/customer-reciept-entry/customer-reciept-entry.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    SidebarComponent,
-    HomeComponent,
-    LoginComponent,
-    InvoiceEntryComponent,
-    InvoiceViewComponent,
-    InvoiceEditComponent,
-    ProductEntryComponent,
-    ProductViewComponent,
-    ProductEditComponent,
-    StockEditComponent,
-    StockEntryComponent,
-    StockViewComponent,
-    StockReportComponent,
-    CustomerEntryComponent,
-    CustomerEditComponent,
-    CustomerViewComponent,
-    CustomerRecieptComponent,
-    SupplierRecieptComponent,
-    ChangePasswordComponent,
-    PurchaseEntryComponent,
-    PurchaseViewComponent,
-    PurchaseEditComponent,
-    InvoicePrintComponent,
-    PurchasePrintComponent,
-    CustomerRecieptEntryComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    RouterModule,
-    FormsModule,
-    CommonModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HeaderComponent,
+        FooterComponent,
+        SidebarComponent,
+        HomeComponent,
+        LoginComponent,
+        InvoiceEntryComponent,
+        InvoiceViewComponent,
+        InvoiceEditComponent,
+        ProductEntryComponent,
+        ProductViewComponent,
+        ProductEditComponent,
+        StockEditComponent,
+        StockEntryComponent,
+        StockViewComponent,
+        StockReportComponent,
+        CustomerEntryComponent,
+        CustomerEditComponent,
+        CustomerViewComponent,
+        CustomerRecieptComponent,
+        SupplierRecieptComponent,
+        ChangePasswordComponent,
+        PurchaseEntryComponent,
+        PurchaseViewComponent,
+        PurchaseEditComponent,
+        InvoicePrintComponent,
+        PurchasePrintComponent,
+        CustomerRecieptEntryComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        RouterModule,
+        FormsModule,
+        CommonModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
