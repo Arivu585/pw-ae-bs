@@ -5,9 +5,10 @@ import { BillService } from '../../bill.service';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-purchase-edit',
-  templateUrl: './purchase-edit.component.html',
-  styleUrl: './purchase-edit.component.css'
+    selector: 'app-purchase-edit',
+    templateUrl: './purchase-edit.component.html',
+    styleUrl: './purchase-edit.component.css',
+    standalone: false
 })
 export class PurchaseEditComponent implements OnInit{
   

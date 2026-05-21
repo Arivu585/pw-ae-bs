@@ -4,9 +4,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-product-edit',
-  templateUrl: './product-edit.component.html',
-  styleUrl: './product-edit.component.css'
+    selector: 'app-product-edit',
+    templateUrl: './product-edit.component.html',
+    styleUrl: './product-edit.component.css',
+    standalone: false
 })
 export class ProductEditComponent implements OnInit{
   constructor(private bill:BillService,private fb:FormBuilder,private router:Router,private route:ActivatedRoute){}

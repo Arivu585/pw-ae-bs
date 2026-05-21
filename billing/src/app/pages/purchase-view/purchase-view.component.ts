@@ -3,9 +3,10 @@ import { BillService } from '../../bill.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-purchase-view',
-  templateUrl: './purchase-view.component.html',
-  styleUrl: './purchase-view.component.css'
+    selector: 'app-purchase-view',
+    templateUrl: './purchase-view.component.html',
+    styleUrl: './purchase-view.component.css',
+    standalone: false
 })
 export class PurchaseViewComponent implements OnInit{
 

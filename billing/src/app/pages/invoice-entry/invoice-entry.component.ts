@@ -6,9 +6,10 @@ import { Subscription } from 'rxjs';
 import { formatDate } from '@angular/common';
 
 @Component({
-  selector: 'app-invoice-entry',
-  templateUrl: './invoice-entry.component.html',
-  styleUrl: './invoice-entry.component.css'
+    selector: 'app-invoice-entry',
+    templateUrl: './invoice-entry.component.html',
+    styleUrl: './invoice-entry.component.css',
+    standalone: false
 })
 export class InvoiceEntryComponent implements OnInit{
   

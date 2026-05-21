@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { NavService } from '../../../nav.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.css',
+    standalone: false
 })
 export class HeaderComponent implements OnInit{
   user: string|any;

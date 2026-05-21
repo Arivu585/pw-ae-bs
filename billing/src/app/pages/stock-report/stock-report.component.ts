@@ -3,9 +3,10 @@ import { BillService } from '../../bill.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-stock-report',
-  templateUrl: './stock-report.component.html',
-  styleUrl: './stock-report.component.css'
+    selector: 'app-stock-report',
+    templateUrl: './stock-report.component.html',
+    styleUrl: './stock-report.component.css',
+    standalone: false
 })
 export class StockReportComponent implements OnInit{
 

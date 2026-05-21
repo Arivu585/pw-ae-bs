@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { BillService } from '../../bill.service';
 
 @Component({
-  selector: 'app-invoice-view',
-  templateUrl: './invoice-view.component.html',
-  styleUrl: './invoice-view.component.css'
+    selector: 'app-invoice-view',
+    templateUrl: './invoice-view.component.html',
+    styleUrl: './invoice-view.component.css',
+    standalone: false
 })
 export class InvoiceViewComponent implements OnInit{
 

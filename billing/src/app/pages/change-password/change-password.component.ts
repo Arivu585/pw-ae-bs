@@ -4,9 +4,10 @@ import { Router } from '@angular/router';
 import { BillService } from '../../bill.service';
 
 @Component({
-  selector: 'app-change-password',
-  templateUrl: './change-password.component.html',
-  styleUrl: './change-password.component.css'
+    selector: 'app-change-password',
+    templateUrl: './change-password.component.html',
+    styleUrl: './change-password.component.css',
+    standalone: false
 })
 export class ChangePasswordComponent implements OnInit{
   aid:string|any;

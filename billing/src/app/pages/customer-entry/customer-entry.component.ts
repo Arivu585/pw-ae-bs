@@ -4,9 +4,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-customer-entry',
-  templateUrl: './customer-entry.component.html',
-  styleUrl: './customer-entry.component.css'
+    selector: 'app-customer-entry',
+    templateUrl: './customer-entry.component.html',
+    styleUrl: './customer-entry.component.css',
+    standalone: false
 })
 export class CustomerEntryComponent implements OnInit{
 

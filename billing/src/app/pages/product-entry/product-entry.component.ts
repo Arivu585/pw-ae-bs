@@ -4,9 +4,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-product-entry',
-  templateUrl: './product-entry.component.html',
-  styleUrl: './product-entry.component.css'
+    selector: 'app-product-entry',
+    templateUrl: './product-entry.component.html',
+    styleUrl: './product-entry.component.css',
+    standalone: false
 })
 export class ProductEntryComponent implements OnInit{
 

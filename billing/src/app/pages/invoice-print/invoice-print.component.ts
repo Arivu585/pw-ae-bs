@@ -5,9 +5,10 @@ import { formatDate } from '@angular/common';
 import numberToWords from 'number-to-words';
 
 @Component({
-  selector: 'app-invoice-print',
-  templateUrl: './invoice-print.component.html',
-  styleUrl: './invoice-print.component.css'
+    selector: 'app-invoice-print',
+    templateUrl: './invoice-print.component.html',
+    styleUrl: './invoice-print.component.css',
+    standalone: false
 })
 export class InvoicePrintComponent implements OnInit{
 

@@ -4,9 +4,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-customer-edit',
-  templateUrl: './customer-edit.component.html',
-  styleUrl: './customer-edit.component.css'
+    selector: 'app-customer-edit',
+    templateUrl: './customer-edit.component.html',
+    styleUrl: './customer-edit.component.css',
+    standalone: false
 })
 export class CustomerEditComponent implements OnInit{
 

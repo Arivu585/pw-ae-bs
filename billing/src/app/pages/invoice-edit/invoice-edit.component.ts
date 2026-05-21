@@ -6,9 +6,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { formatDate } from '@angular/common';
 
 @Component({
-  selector: 'app-invoice-edit',
-  templateUrl: './invoice-edit.component.html',
-  styleUrl: './invoice-edit.component.css'
+    selector: 'app-invoice-edit',
+    templateUrl: './invoice-edit.component.html',
+    styleUrl: './invoice-edit.component.css',
+    standalone: false
 })
 export class InvoiceEditComponent implements OnInit{
   

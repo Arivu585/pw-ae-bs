@@ -5,9 +5,10 @@ import { BillService } from '../../bill.service';
 import { formatDate } from '@angular/common';
 
 @Component({
-  selector: 'app-purchase-print',
-  templateUrl: './purchase-print.component.html',
-  styleUrl: './purchase-print.component.css'
+    selector: 'app-purchase-print',
+    templateUrl: './purchase-print.component.html',
+    styleUrl: './purchase-print.component.css',
+    standalone: false
 })
 export class PurchasePrintComponent implements OnInit{
 

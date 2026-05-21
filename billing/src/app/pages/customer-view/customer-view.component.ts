@@ -3,9 +3,10 @@ import { BillService } from '../../bill.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-customer-view',
-  templateUrl: './customer-view.component.html',
-  styleUrl: './customer-view.component.css'
+    selector: 'app-customer-view',
+    templateUrl: './customer-view.component.html',
+    styleUrl: './customer-view.component.css',
+    standalone: false
 })
 export class CustomerViewComponent implements OnInit{
 

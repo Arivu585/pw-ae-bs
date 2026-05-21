@@ -5,9 +5,10 @@ import { Router } from '@angular/router';
 import { NavService } from '../../nav.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.css',
+    standalone: false
 })
 export class LoginComponent implements OnInit{
   constructor(private fb:FormBuilder,private obj:BillService,private route:Router,private nav:NavService){}

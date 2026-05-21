@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { NavService } from '../../../nav.service';
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css'
+    selector: 'app-sidebar',
+    templateUrl: './sidebar.component.html',
+    styleUrl: './sidebar.component.css',
+    standalone: false
 })
 export class SidebarComponent {
   user: string|any;

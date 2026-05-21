@@ -4,9 +4,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-stock-edit',
-  templateUrl: './stock-edit.component.html',
-  styleUrl: './stock-edit.component.css'
+    selector: 'app-stock-edit',
+    templateUrl: './stock-edit.component.html',
+    styleUrl: './stock-edit.component.css',
+    standalone: false
 })
 export class StockEditComponent implements OnInit{
 
